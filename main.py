@@ -2,7 +2,12 @@
 # -*- coding: utf8 -*-
 import sys
 import tkinter as tk
+# ぼやけ防止（windowsのコンテンツサイズの拡大に合わせてGUIの文字を拡大してくれる）
+import ctypes
 import executors
+
+# ぼやけ防止（windowsのコンテンツサイズの拡大に合わせてGUIの文字を拡大してくれる）
+ctypes.windll.shcore.SetProcessDpiAwareness(True)
 
 # GUIメインモジュール
 _root = tk.Tk()
@@ -27,7 +32,8 @@ _entry = tk.Entry()
 _entry.pack()
 _entry.place(x=190, y=43)
 # ファイル参照ボタン
-_select_button = tk.Button(text=u'ファイルを選択', width=10, command=lambda: executors.ExecuteMain(_entry.get(), _file_entry.get()))
+_select_button = tk.Button(text=u'ファイルを選択', width=10,
+                           command=lambda: executors.ExecuteMain(_entry.get(), _file_entry.get()))
 _select_button.pack()
 _select_button.place(x=190, y=70)
 
@@ -37,11 +43,11 @@ _file_entry.pack()
 _file_entry.place(x=190, y=103)
 
 # 実行ボタン
-_do_button = tk.Button(text=u'削除を実行する', width=20, command=lambda: executors.ExecuteMain(_entry.get(), _file_entry.get()))
+_do_button = tk.Button(text=u'削除を実行する', width=20,
+                       command=lambda: executors.ExecuteMain(_entry.get(), _file_entry.get()))
 # _do_button.bind("<Button-1>", executors.ExecuteMain(_entry.get()))
 _do_button.pack()
 _do_button.place(x=320, y=160)
-
 
 # 描画
 _root.mainloop()
